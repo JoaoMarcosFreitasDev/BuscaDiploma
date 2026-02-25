@@ -1,3 +1,14 @@
 spring:
   application:
     name: projetobuscadiploma
+
+  datasource:
+    url: jdbc:sqlserver://localhost:1433;databaseName=BuscaDiploma;TrustServerCertificate=true
+    username: sa
+    password: Jo@o39052016
+
+  jpa:
+    hibernate:
+      ddl-auto: none
+
+    show-sql: true
