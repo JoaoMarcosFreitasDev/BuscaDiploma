@@ -1,14 +1,17 @@
 package com.example.projetobuscadiploma.model;
 
 
+import com.example.projetobuscadiploma.enums.RedeSocial;
 import jakarta.persistence.Entity;
 import lombok.Builder;
 import lombok.Data;
 
+import java.util.List;
+
 @Data
 @Builder
 @Entity
-public class Usuário {
+public class Usuario {
 
     private int id;
     private String nomeCompleto;
@@ -17,6 +20,6 @@ public class Usuário {
     private String password;
     private String telefone;
     private String urlPerfilFoto;
-    private String instagram;
-    private String facebook;
+    private List<RedeSocial> redeSocials;
+
 }
