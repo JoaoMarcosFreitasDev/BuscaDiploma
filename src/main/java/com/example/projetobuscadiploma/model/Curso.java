@@ -11,7 +11,7 @@ import lombok.Data;
 public class Curso {
 
     private int id;
-    private Faculdade faculdade;
+    private int faculdadeId;
     private String nameCurso;
     private int durationYears;
     private Modalidade modalidade;
