@@ -1,4 +1,4 @@
-package com.example.projetobuscadiploma.dto.response;
+package com.example.projetobuscadiploma.dto.faculdade;
 
 import com.example.projetobuscadiploma.enums.RedeSocial;
 import com.example.projetobuscadiploma.enums.TipoInstituicao;
@@ -16,7 +16,8 @@ public class FaculdadeResponse {
     private String telefoneSuporte;
     private String email;
     private String url;
-    private List<RedeSocial> redeSocials;
-    private double notaMec;
+    private String instagram;
+    private String facebook;
+    private float notaMec;
     private int quantidadeCursos;
 }

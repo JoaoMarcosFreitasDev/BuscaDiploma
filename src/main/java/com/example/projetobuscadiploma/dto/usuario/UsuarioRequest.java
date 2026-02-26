@@ -1,9 +1,11 @@
-package com.example.projetobuscadiploma.dto.request;
+package com.example.projetobuscadiploma.dto.usuario;
 
 import com.example.projetobuscadiploma.enums.RedeSocial;
+import lombok.Data;
 
 import java.util.List;
 
+@Data
 public class UsuarioRequest {
 
     private String nomeCompleto;
@@ -12,5 +14,6 @@ public class UsuarioRequest {
     private String password;
     private String telefone;
     private String urlPerfilFoto;
-    private List<RedeSocial> redeSocials;
+    private String instagram;
+    private String facebook;
 }

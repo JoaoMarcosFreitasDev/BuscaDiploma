@@ -1,4 +1,4 @@
-package com.example.projetobuscadiploma.dto.response;
+package com.example.projetobuscadiploma.dto.polohas;
 
 import com.example.projetobuscadiploma.enums.Turno;
 

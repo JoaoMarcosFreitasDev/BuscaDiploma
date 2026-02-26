@@ -1,4 +1,4 @@
-package com.example.projetobuscadiploma.dto.response;
+package com.example.projetobuscadiploma.dto.curso;
 
 import com.example.projetobuscadiploma.enums.Modalidade;
 import lombok.Builder;
@@ -14,4 +14,6 @@ public class CursoResponse {
     private int durationYears;
     private Modalidade modalidade;
     private String linkCurso;
+    private double notaMec;
+    private String describe;
 }

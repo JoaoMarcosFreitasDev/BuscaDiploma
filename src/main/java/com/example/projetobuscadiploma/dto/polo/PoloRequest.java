@@ -1,4 +1,4 @@
-package com.example.projetobuscadiploma.dto.request;
+package com.example.projetobuscadiploma.dto.polo;
 
 import com.example.projetobuscadiploma.enums.Estado;
 import com.example.projetobuscadiploma.model.Curso;

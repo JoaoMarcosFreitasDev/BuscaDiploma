@@ -1,9 +1,13 @@
-package com.example.projetobuscadiploma.dto.response;
+package com.example.projetobuscadiploma.dto.usuario;
 
 import com.example.projetobuscadiploma.enums.RedeSocial;
+import lombok.Builder;
+import lombok.Data;
 
 import java.util.List;
 
+@Data
+@Builder
 public class UsuarioResponse {
 
     private int id;
@@ -13,5 +17,6 @@ public class UsuarioResponse {
     private String password;
     private String telefone;
     private String urlPerfilFoto;
-    private List<RedeSocial> redeSocials;
+    private String instagram;
+    private String facebook;
 }

@@ -7,7 +7,6 @@ import lombok.Data;
 
 @Data
 @Builder
-@Entity
 public class PoloHasCurso {
 
     private int id;

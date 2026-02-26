@@ -1,7 +1,7 @@
-package com.example.projetobuscadiploma.dto.request;
+package com.example.projetobuscadiploma.dto.curso;
 
 import com.example.projetobuscadiploma.enums.Modalidade;
-import com.example.projetobuscadiploma.model.Faculdade;
+import jakarta.persistence.Column;
 import lombok.Data;
 
 @Data
@@ -12,4 +12,6 @@ public class CursoRequest {
     private int durationYears;
     private Modalidade modalidade;
     private String linkCurso;
+    private double notaMec;
+    private String describe;
 }

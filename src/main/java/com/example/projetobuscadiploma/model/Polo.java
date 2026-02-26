@@ -2,14 +2,20 @@ package com.example.projetobuscadiploma.model;
 
 import com.example.projetobuscadiploma.enums.Estado;
 import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.List;
 
 @Data
 @Builder
 @Entity
+@Table(name = "Faculdade")
+@NoArgsConstructor
+@AllArgsConstructor
 public class Polo {
 
     private int id;
