@@ -15,6 +15,9 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class PoloHasCurso {
 
+    @Id
+    @Column(name = "IdPoloHasCurso")
+    private int id;
     @Column(name = "IdCurso")
     private int cursoId;
     @Column(name = "IdPolo")
