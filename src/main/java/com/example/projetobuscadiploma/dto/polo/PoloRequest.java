@@ -10,6 +10,7 @@ public class PoloRequest {
 
     private Faculdade faculdade;
     private String name;
+    private String endereco;
     private Estado estado;
     private String cidade;
     private String bairro;
@@ -17,5 +18,5 @@ public class PoloRequest {
     private String number;
     private double latitude;
     private double longitude;
-    private List<Curso> cursos;
+//    private List<Curso> cursos;
 }

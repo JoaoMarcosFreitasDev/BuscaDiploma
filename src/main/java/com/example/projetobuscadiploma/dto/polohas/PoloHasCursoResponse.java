@@ -4,7 +4,6 @@ import com.example.projetobuscadiploma.enums.Turno;
 
 public class PoloHasCursoResponse {
 
-    private int id;
     private int cursoId;
     private int poloId;
     private float mensalidade;
