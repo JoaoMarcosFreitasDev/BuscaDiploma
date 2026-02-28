@@ -2,9 +2,12 @@ package com.example.projetobuscadiploma.dto.faculdade;
 
 import com.example.projetobuscadiploma.enums.RedeSocial;
 import com.example.projetobuscadiploma.enums.TipoInstituicao;
+import lombok.Data;
+import lombok.ToString;
 
-import java.util.List;
 
+@Data
+@ToString
 public class FaculdadeRequest {
     private String nomeFantasia;
     private String razaoSocial;

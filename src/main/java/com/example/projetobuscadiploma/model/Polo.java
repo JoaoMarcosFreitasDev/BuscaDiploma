@@ -18,6 +18,7 @@ import java.util.List;
 public class Polo {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "IdPolo")
     private int id;
     @OneToOne

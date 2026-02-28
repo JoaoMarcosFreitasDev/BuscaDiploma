@@ -16,6 +16,7 @@ import lombok.NoArgsConstructor;
 public class PoloHasCurso {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "IdPoloHasCurso")
     private int id;
     @Column(name = "IdCurso")

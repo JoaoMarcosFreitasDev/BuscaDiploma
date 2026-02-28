@@ -19,7 +19,8 @@ public class UsuarioService {
 
     @Transactional
     public UsuarioResponse create(UsuarioRequest usuarioRequest){
-        Usuario user = usuarioRepository.save(builderRequest(usuarioRequest));
+        Usuario user = usuarioRepository.save(UsuarioMapper.INSTANCE.toEntity(usuarioRequest));
+        System.out.println(user);
         return builderResponse(user);
     }
 
@@ -27,6 +28,24 @@ public class UsuarioService {
     public List<UsuarioResponse> listAll(){
         List<Usuario> users = usuarioRepository.findAll();
         return UsuarioMapper.INSTANCE.toListReponse(users);
+    }
+
+    @Transactional
+    public UsuarioResponse findById(int id){
+
+        return builderResponse(usuarioRepository.findById(id).orElse(new Usuario()));
+    }
+
+    @Transactional
+    public UsuarioResponse update(int id, UsuarioRequest request){
+        Usuario user = builderRequest(request);
+        user.setId(id);
+        return builderResponse(usuarioRepository.save(user));
+    }
+
+    @Transactional
+    public void delete(int id){
+        usuarioRepository.deleteById(id);
     }
 
 

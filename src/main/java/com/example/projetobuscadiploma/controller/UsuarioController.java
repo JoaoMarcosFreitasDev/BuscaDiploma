@@ -26,4 +26,19 @@ public class UsuarioController {
     public List<UsuarioResponse> listAll(){
         return userService.listAll();
     }
+
+    @GetMapping("/{id}")
+    public UsuarioResponse findById(@PathVariable int id){
+        return userService.findById(id);
+    }
+
+    @PutMapping("/{id}")
+    public UsuarioResponse update(@PathVariable int id, @RequestBody UsuarioRequest request){
+        return userService.update(id, request);
+    }
+
+    @DeleteMapping("/{id}")
+    public void delete(@PathVariable int id){
+        userService.delete(id);
+    }
 }

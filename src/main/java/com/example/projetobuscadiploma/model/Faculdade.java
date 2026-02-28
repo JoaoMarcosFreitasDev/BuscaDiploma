@@ -1,16 +1,12 @@
 package com.example.projetobuscadiploma.model;
 
-import com.example.projetobuscadiploma.enums.RedeSocial;
 import com.example.projetobuscadiploma.enums.TipoInstituicao;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
-import java.util.List;
 
 @Data
+@ToString
 @Builder
 @Entity
 @Table(name = "Faculdade")
@@ -19,6 +15,7 @@ import java.util.List;
 public class Faculdade {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "IdFaculdade")
     private int id;
     @Column(name = "NomeFantasia")
@@ -49,5 +46,7 @@ public class Faculdade {
     private float notaMec;
     @Column(name = "QuantidadeCursos")
     private int quantidadeCursos;
+
+
 
 }

@@ -1,6 +1,7 @@
 package com.example.projetobuscadiploma.dto.curso;
 
 import com.example.projetobuscadiploma.enums.Modalidade;
+import com.example.projetobuscadiploma.model.Faculdade;
 import jakarta.persistence.Column;
 import lombok.Data;
 
