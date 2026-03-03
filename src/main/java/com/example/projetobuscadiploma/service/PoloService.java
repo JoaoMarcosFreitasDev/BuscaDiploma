@@ -10,6 +10,7 @@ import com.example.projetobuscadiploma.repository.PoloRepository;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
@@ -41,7 +42,11 @@ public class PoloService {
         repository.deleteById(id);
     }
 
-
+    public PoloResponse update(int id, PoloRequest request){
+        Polo polo = buildRequest(request, faculdadeRepository);
+        polo.setId(id);
+        return PoloMapper.INSTANCE.toDTO(repository.save(polo));
+    }
 
 
     public Polo buildRequest(PoloRequest request, FaculdadeRepository repository){
