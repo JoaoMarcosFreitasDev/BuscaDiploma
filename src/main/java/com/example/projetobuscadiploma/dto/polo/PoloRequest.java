@@ -3,12 +3,14 @@ package com.example.projetobuscadiploma.dto.polo;
 import com.example.projetobuscadiploma.enums.Estado;
 import com.example.projetobuscadiploma.model.Curso;
 import com.example.projetobuscadiploma.model.Faculdade;
+import lombok.Data;
 
 import java.util.List;
 
+@Data
 public class PoloRequest {
 
-    private Faculdade faculdade;
+    private int faculdade;
     private String name;
     private String endereco;
     private Estado estado;
