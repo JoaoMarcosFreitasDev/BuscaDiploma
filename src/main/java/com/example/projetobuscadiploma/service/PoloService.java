@@ -23,10 +23,12 @@ public class PoloService {
     private final PoloRepository repository;
     private final FaculdadeRepository faculdadeRepository;
 
+    @Transactional
     public PoloResponse salvar(PoloRequest request){
         return PoloMapper.INSTANCE.toDTO(repository.save(buildRequest(request, faculdadeRepository)));
     }
 
+    @Transactional
     public PoloResponse findById(int id){
         return PoloMapper.INSTANCE
                 .toDTO(repository
@@ -34,14 +36,17 @@ public class PoloService {
                         .orElseThrow(() -> new EntityNotFoundException("Polo not found!")));
     }
 
+    @Transactional
     public List<PoloResponse> findAll(){
         return PoloMapper.INSTANCE.listResponse(repository.findAll());
     }
 
+    @Transactional
     public void delete(int id){
         repository.deleteById(id);
     }
 
+    @Transactional
     public PoloResponse update(int id, PoloRequest request){
         Polo polo = buildRequest(request, faculdadeRepository);
         polo.setId(id);
