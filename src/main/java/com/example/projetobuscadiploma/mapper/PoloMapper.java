@@ -14,6 +14,5 @@ public interface PoloMapper {
     PoloMapper INSTANCE = Mappers.getMapper(PoloMapper.class);
 
     PoloResponse toDTO(Polo polo);
-    Polo toEntity(PoloRequest request);
     List<PoloResponse> listResponse (List<Polo> polos);
 }

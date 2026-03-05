@@ -3,9 +3,13 @@ package com.example.projetobuscadiploma.dto.polo;
 import com.example.projetobuscadiploma.enums.Estado;
 import com.example.projetobuscadiploma.model.Curso;
 import com.example.projetobuscadiploma.model.Faculdade;
+import lombok.Builder;
+import lombok.Data;
 
 import java.util.List;
 
+@Data
+@Builder
 public class PoloResponse {
 
     private int id;
