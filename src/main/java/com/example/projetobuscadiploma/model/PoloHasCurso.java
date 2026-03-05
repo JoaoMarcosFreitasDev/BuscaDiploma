@@ -19,10 +19,14 @@ public class PoloHasCurso {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "IdPoloHasCurso")
     private int id;
-    @Column(name = "IdCurso")
-    private int cursoId;
-    @Column(name = "IdPolo")
-    private int poloId;
+
+    @OneToOne
+    @JoinColumn(name = "IdCurso", referencedColumnName = "IdCurso", nullable = false)
+    private Curso cursoId;
+
+    @OneToOne
+    @JoinColumn(name = "IdPolo",  referencedColumnName = "IdPolo", nullable = false)
+    private Polo poloId;
     @Column(name = "Mensalidade")
     private float mensalidade;
 
