@@ -15,7 +15,7 @@ public interface PoloHasCursoMapper {
     PoloHasCursoMapper INSTANCE = Mappers.getMapper(PoloHasCursoMapper.class);
 
     PoloHasCursoResponse toDTO(PoloHasCurso poloHasCurso);
-    PoloHasCurso toEntity(PoloHasCursoRequest request);
+//    PoloHasCurso toEntity(PoloHasCursoRequest request);
 
     List<PoloHasCursoResponse> listResponse(List<PoloHasCurso> polosHasCourses);
 }

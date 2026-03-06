@@ -15,6 +15,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class PoloHasCursoService {
@@ -30,9 +32,33 @@ public class PoloHasCursoService {
     }
 
 
+    @Transactional
+    public List<PoloHasCursoResponse> findAll(){
+        return PoloHasCursoMapper.INSTANCE.listResponse(repository.findAll());
+    }
 
+    @Transactional
+    public PoloHasCursoResponse findById(int id){
+        return PoloHasCursoMapper.INSTANCE.toDTO(repository.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException("PoloHasCourse not found")));
+    }
 
+    @Transactional
+    public void delete(int id){
+        repository.deleteById(id);
+    }
 
+    @Transactional
+    public PoloHasCursoResponse updateFull(int id, PoloHasCursoRequest request){
+        PoloHasCurso has = buildRequest(request);
+        has.setId(id);
+        return PoloHasCursoMapper.INSTANCE.toDTO(repository.save(has));
+    }
+
+//    @Transactional
+//    public PoloHasCursoResponse updatePartial(int id, PoloHasCursoRequest request){
+//
+//    }
 
     public PoloHasCurso buildRequest(PoloHasCursoRequest request){
 
