@@ -2,6 +2,8 @@ package com.example.projetobuscadiploma.service;
 
 import com.example.projetobuscadiploma.dto.curso.CursoRequest;
 import com.example.projetobuscadiploma.dto.curso.CursoResponse;
+import com.example.projetobuscadiploma.exception.ErrorServerException;
+import com.example.projetobuscadiploma.exception.NotFoundException;
 import com.example.projetobuscadiploma.mapper.CursoMapper;
 import com.example.projetobuscadiploma.model.Curso;
 import com.example.projetobuscadiploma.model.Faculdade;
@@ -12,6 +14,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.server.ServerErrorException;
 
 import java.util.List;
 import java.util.Optional;
@@ -28,22 +31,32 @@ public class CursoService {
 
     @Transactional
     public CursoResponse createCurso(CursoRequest cursoRequest){
-        Faculdade faculdade = repository.findById(cursoRequest.getFaculdadeId())
-                .orElseThrow(() -> new EntityNotFoundException("Faculty not found."));
-        Curso cursoCreated = cursoRepository.save(returnCurso(faculdade, cursoRequest));
-        return CursoMapper.INSTANCE.toDTO(cursoCreated);
+        try {
+            Faculdade faculdade = repository.findById(cursoRequest.getFaculdadeId())
+                    .orElseThrow(() -> new EntityNotFoundException("Faculty not found."));
+            Curso cursoCreated = cursoRepository.save(returnCurso(faculdade, cursoRequest));
+            return CursoMapper.INSTANCE.toDTO(cursoCreated);
+        }catch (ErrorServerException e){
+            throw new ErrorServerException();
+        }
     }
 
     @Transactional
     public CursoResponse findById(int id){
-        return CursoMapper.INSTANCE.toDTO(cursoRepository.findById(id)
-                .orElseThrow(() -> new EntityNotFoundException("Course not Found")));
+        try {
+            return CursoMapper.INSTANCE.toDTO(cursoRepository.findById(id)
+                    .orElseThrow(() -> new EntityNotFoundException("Course not Found")));
+        }catch (NotFoundException e){
+            throw new NotFoundException("Course linked for the id not found");
+        }
     }
 
     @Transactional
-    public List<CursoResponse> findAll(){
+    public List<CursoResponse> findAll() throws NotFoundException{
+
         return CursoMapper.INSTANCE
                 .listResponseDTO(cursoRepository.findAll());
+
     }
 
     @Transactional

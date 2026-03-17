@@ -2,6 +2,8 @@ package com.example.projetobuscadiploma.service;
 
 import com.example.projetobuscadiploma.dto.polo.PoloRequest;
 import com.example.projetobuscadiploma.dto.polo.PoloResponse;
+import com.example.projetobuscadiploma.exception.ErrorServerException;
+import com.example.projetobuscadiploma.exception.NotFoundException;
 import com.example.projetobuscadiploma.mapper.PoloMapper;
 import com.example.projetobuscadiploma.mapper.modelmapper.ModelMapperConfig;
 import com.example.projetobuscadiploma.model.Faculdade;
@@ -31,10 +33,14 @@ public class PoloService {
 
     @Transactional
     public PoloResponse findById(int id){
-        return PoloMapper.INSTANCE
-                .toDTO(repository
-                        .findById(id)
-                        .orElseThrow(() -> new EntityNotFoundException("Polo not found!")));
+        try {
+            return PoloMapper.INSTANCE
+                    .toDTO(repository
+                            .findById(id)
+                            .orElseThrow(() -> new EntityNotFoundException("Polo not found!")));
+        }catch (NotFoundException e){
+            throw new NotFoundException("Polo linked for the id not found");
+        }
     }
 
     @Transactional
