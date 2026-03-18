@@ -1,25 +1,21 @@
 package com.example.projetobuscadiploma.infra;
 
-import com.example.projetobuscadiploma.exception.ErrorServerException;
-import com.example.projetobuscadiploma.exception.EventFullException;
-import com.example.projetobuscadiploma.exception.NotFoundException;
-import jakarta.persistence.EntityNotFoundException;
+import com.example.projetobuscadiploma.exception.*;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.client.HttpServerErrorException;
 import org.springframework.web.server.ServerErrorException;
-import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
 import java.time.LocalDateTime;
 
 @ControllerAdvice
-public class RestExceptionHandler extends ResponseEntityExceptionHandler {
+public class RestExceptionHandler{
 
 
     @ExceptionHandler(HttpServerErrorException.InternalServerError.class)
-    public ResponseEntity<RestErrorMessage> handlerErrorServerException (HttpServerErrorException.InternalServerError e){
+    public ResponseEntity<RestErrorMessage> handlerHttpServerErrorException (HttpServerErrorException.InternalServerError e){
         return new ResponseEntity<>(
                 RestErrorMessage.builder()
                         .timestamp(LocalDateTime.now())
@@ -31,12 +27,12 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
     }
 
     @ExceptionHandler(EntityNotFoundException.class)
-    public ResponseEntity<RestErrorMessage> handlerErrorServerException (EntityNotFoundException e){
+    public ResponseEntity<RestErrorMessage> handlerEntityNotFound (EntityNotFoundException e){
         return new ResponseEntity<>(
                 RestErrorMessage.builder()
                         .timestamp(LocalDateTime.now())
                         .status(HttpStatus.BAD_REQUEST.value())
-                        .title("Object not found!")
+                        .title("Not found!")
                         .details(e.getMessage())
                         .developerMessage(e.getMessage()).build(), HttpStatus.BAD_REQUEST
         );
@@ -56,19 +52,19 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
     }
 
     @ExceptionHandler(NotFoundException.class)
-    public ResponseEntity<RestErrorMessage> handlerErrorServerException (NotFoundException e){
+    public ResponseEntity<RestErrorMessage> handlerNotFoundException (NotFoundException e){
         return new ResponseEntity<>(
                 RestErrorMessage.builder()
                         .timestamp(LocalDateTime.now())
-                        .status(HttpStatus.BAD_REQUEST.value())
+                        .status(HttpStatus.NOT_FOUND.value())
                         .title("Object not found!")
                         .details(e.getMessage())
-                        .developerMessage(e.getClass().getName()).build(), HttpStatus.BAD_REQUEST
+                        .developerMessage(e.getClass().getName()).build(), HttpStatus.NOT_FOUND
         );
     }
 
     @ExceptionHandler(EventFullException.class)
-    public ResponseEntity<RestErrorMessage> handlerErrorServerException (EventFullException e){
+    public ResponseEntity<RestErrorMessage> handlerEventFullException (EventFullException e){
         return new ResponseEntity<>(
                 RestErrorMessage.builder()
                         .timestamp(LocalDateTime.now())
@@ -78,6 +74,22 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
                         .developerMessage(e.getClass().getName()).build(), HttpStatus.CONFLICT
         );
     }
+
+    @ExceptionHandler(HttpMessageNotReadableException.class)
+    public ResponseEntity<RestErrorMessage> handleMessageNotReadable (HttpMessageNotReadableException e){
+        return new ResponseEntity<>(
+                RestErrorMessage.builder()
+                        .timestamp(LocalDateTime.now())
+                        .status(HttpStatus.BAD_REQUEST.value())
+                        .title("Corpo de requisição")
+                        .details("O corpo da requisição (JSON) está ausente ou mal formado não permitindo a execução da operação")
+                        .developerMessage(e.getClass().getName()).build(), HttpStatus.BAD_REQUEST
+        );
+    }
+
+
+
+
 
 
 
